@@ -1,0 +1,25 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: api
+  namespace: production
+spec:
+  selector:
+    istio: gateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - balericaconsulting.com
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      hosts:
+        - balericaconsulting.com
+      tls:
+        credentialName: api-balericaconsulting-com-crt
+        mode: SIMPLE
